@@ -1,56 +1,13 @@
 package server;
 
-import database.Connect;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class ServerTranslationApplication {
-
-	int lang = 0;
-	String word = null;
-	
-	public void setLanguage(int x) {
-		this.lang = x;
-	}
-	
-	public int getLanguage() {
-		return lang;
-	}	
-	
-	public void setWord(String y) {
-		this.word = y;
-	}
-	
-	public String getWord() {
-		return word;
-	}	
-	
-	public String retrieve() throws Exception {	
-		
-		Connect db = new Connect();
-		String output = "";		
-		try {
-			Connection conn = db.getConnection();			
-			String word = getWord();	
-			int languages = getLanguage();
-			String query = "SELECT translate from DICTIONARY WHERE word = '"+ word +"' and did = '"+ String.valueOf(languages) +"'";			
-			PreparedStatement select = conn.prepareStatement(query);			
-			ResultSet result = select.executeQuery();			
-			while(result.next()) {
-				output = result.getString("translate");
-			}	
-		} catch (Exception e) {
-			System.out.println(e);
-		}		
-		return output;		
-	}
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -87,18 +44,6 @@ public class ServerTranslationApplication {
 				
 				System.out.println("The message sent from the socket was: " + message);
 	            System.out.println("Closing sockets.");
-				
-	            /*           
-				//Create stream to write data on the network
-				DataOutputStream outputStream = new DataOutputStream(clientSocket.getOutputStream());				
-				//Send current date back to the client
-				//outputStream.writeUTF(text1);
-				outputStream.writeInt(getLanguage());				
-				//Close the socket
-				clientSocket.close();
-				
-				Good morning
-				*/
 				
 	            //Accept client request for connection
 				Socket clientSocket2 = serverSocket2.accept();

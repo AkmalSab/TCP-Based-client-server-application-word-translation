@@ -13,8 +13,7 @@ public class ClientTranslationApplication {
 	
 	public static void ClientSendMessage(String msg, String choice) throws UnknownHostException, IOException {
 		
-		try {
-			
+		try {			
 			Socket socket = new Socket(InetAddress.getLocalHost(), 4228);
 			
 			OutputStream outputStream = socket.getOutputStream();
@@ -31,10 +30,8 @@ public class ClientTranslationApplication {
 	        String result = bufferedReader.readLine();
 	        ClientUserInterface.updateResult(result);
 			
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-			
+		} catch (Exception e) {			
+			e.printStackTrace();			
 		}
 	}
 }

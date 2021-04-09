@@ -56,33 +56,23 @@ public class ClientUserInterface implements ActionListener {
 		panel.add(answers);
 		
 		frame.add(panel);
-		frame.setVisible(true);
-		
+		frame.setVisible(true);		
 	}
 	
-	public static void updateResult(String result) throws UnsupportedEncodingException {
-		
-		answers.setText(result);
-		
+	public static void updateResult(String result) throws UnsupportedEncodingException {		
+		answers.setText(result);		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		try {
-			
-			ClientTranslationApplication.ClientSendMessage(wordInput.getText(), String.valueOf(combo.getSelectedItem()));
-			
-		} catch (UnknownHostException e1) {
-			
-			e1.printStackTrace();
-			
-		} catch (IOException e1) {
-			
-			e1.printStackTrace();
-			
-		}
-		
+		try {			
+			ClientTranslationApplication.ClientSendMessage(wordInput.getText(), String.valueOf(combo.getSelectedItem()));			
+		} catch (UnknownHostException e1) {			
+			e1.printStackTrace();			
+		} catch (IOException e1) {			
+			e1.printStackTrace();			
+		}		
 	}
 	
 	public static void main(String[] args){
